@@ -16,12 +16,7 @@ type Data struct {
 func copyTemplate(from, to string, data Data, perm os.FileMode) error {
 	to = to[:len(to)-5]
 	fmt.Printf("copying template  (%s) to (%s)\n", from, to)
-	b, err := ioutil.ReadFile(from)
-	if err != nil {
-		return err
-	}
-	fmt.Printf("template text: %s\n", b)
-	tmpl, err := template.ParseFiles(string(b))
+	tmpl, err := template.ParseFiles(from)
 	if err != nil {
 		return err
 	}
